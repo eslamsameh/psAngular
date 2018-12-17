@@ -1,0 +1,30 @@
+<div class="container" *ngIf="adminRole == 'admin' ">
+  <h4>All Admins</h4>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th style="width: 1%">Action</th>
+        <th>Admin Name</th>
+        <th>Role</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let d of data ; let i = index" >
+        <td>
+          <div class="edit-remove">
+            <div>
+              <i class="fa fa-trash" (click)="onPressDeleteIcon(d.adminID,i)"></i>
+            </div>
+            <div>
+              <i class="fa fa-pencil" (click)="onPressEditIcon(d.adminID)"></i>
+            </div>
+          </div>
+        </td>
+        <td class="td-names">{{d.userName}}</td>
+        <td class="td-names">{{d.role}}</td>
+        <td class="td-names">{{d.email}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

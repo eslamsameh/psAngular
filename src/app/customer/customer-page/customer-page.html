@@ -1,0 +1,86 @@
+<!-- to make add device -->
+<div class="container" >
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Add Customer</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="input-group">
+              <label>Customer Name</label>
+              <input type="text" class="form-control" placeholder="Device Name" [(ngModel)]="CustomerNameForAdd">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="OnPressSubmitToAddCustomer()">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="container" >
+    <h4>All Customers</h4>
+    <div class="btn-add-device">
+      <button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal">Add Customer</button>
+
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th style="width: 1%">Action</th>
+          <th>Customer Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of data ; let i = index">
+          <td>
+            <div class="edit-remove">
+              <div>
+                <i class="fa fa-trash" (click)="onPressDeleteIcon(d.customerID,i)"></i>
+              </div>
+              <div>
+                <i class="fa fa-pencil" (click)="onPressEditIcon(d.customerID)" data-toggle="modal" data-target="#myModal-edit"></i>
+              </div>
+            </div>
+          </td>
+          <td class="td-names" (click)="OnPressCustomer(d.customerID)">{{d.customerName}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- to make edit modal -->
+  <div class="container" >
+    <div class="modal fade" id="myModal-edit" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Edit Customer</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+          </div>
+          <div class="modal-body">
+            <div class="input-group">
+              <label>Customer Name</label>
+              <input type="text" class="form-control" placeholder="Device Name" [(ngModel)]="CustomerName">
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="OnPressSubmitForEditCustomer()">Submit</button>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>

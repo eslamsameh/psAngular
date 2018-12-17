@@ -1,0 +1,95 @@
+<!-- to make add device -->
+<div class="container" *ngIf="adminRole =='admin'">
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add Device</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="input-group">
+            <label>Device Name</label>
+            <input type="text" class="form-control" placeholder="Device Name" [(ngModel)]="deviceNameForAdd">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="OnPressSubmitToAddDevice()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="container" *ngIf="adminRole == 'admin' ">
+  <h4>All Devices</h4>
+  <div class="btn-add-device">
+    <button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal">Add Device</button>
+
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th style="width: 1%">Action</th>
+        <th>Device Name</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of data ; let i = index">
+        <td>
+          <div class="edit-remove">
+            <div>
+              <i class="fa fa-trash" (click)="onPressDeleteIcon(d.deviceID,i)"></i>
+            </div>
+            <div>
+              <i class="fa fa-pencil" (click)="onPressEditIcon(d.deviceID,d.status)" data-toggle="modal" data-target="#myModal-edit"></i>
+            </div>
+          </div>
+        </td>
+        <td class="td-names">{{d.deviceName}}</td>
+        <td *ngIf="d.status == 0" class="td-names">
+          <button class="btn btn-outline-danger" (click)="OnPressActive(d.deviceName,d.deviceID)">NonActive</button>
+        </td>
+
+        <td *ngIf="d.status == 1" class="td-names">
+          <button class="btn btn-outline-success" (click)="OnPressNonActive(d.deviceName,d.deviceID)">Active</button>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- to make edit modal -->
+<div class="container" *ngIf="adminRole =='admin'">
+  <div class="modal fade" id="myModal-edit" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Device</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+        <div class="modal-body">
+          <div class="input-group">
+            <label>Device Name</label>
+            <input type="text" class="form-control" placeholder="Device Name" [(ngModel)]="deviceName">
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="OnPressSubmitForEditDevice()">Submit</button>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

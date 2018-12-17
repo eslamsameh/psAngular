@@ -1,0 +1,11 @@
+<div class="container" *ngIf="adminRole == 'admin'">
+  <h4>Print Your Text</h4>
+  <div class="card">
+    <div class="card-body">
+      <ck-editor id="text" class="myDivToPrint" name="editor1" [(ngModel)]="editorDescription" skin="moono-lisa" language="en"></ck-editor>
+    </div>
+
+  </div>
+  <div class="print">
+   
+</div>

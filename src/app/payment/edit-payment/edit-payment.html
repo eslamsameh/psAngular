@@ -1,0 +1,295 @@
+<div class="container" *ngIf="notFinished">
+  <h4>Edit Payment</h4>
+  <div class="card">
+
+    <div class="row">
+      <div class="col-sm-2">
+        <div class="input-group">
+          <label> Customer Name</label>
+        </div>
+
+      </div>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="customer Name" [(ngModel)]="customerName">
+          <button class="btn btn-info" (click)="onPressCheckCustomer()">Check</button>
+        </div>
+      </div>
+
+    </div>
+    <div *ngIf="visableCustomer" class="customer-btn">
+      <button *ngFor="let c of customers" class="btn btn-default" (click)="onPressCutomerButton(c.customerName,c.customerID)">{{c.customerName}}</button>
+    </div>
+    <span *ngIf="AddCustomer" class="btn-add-customer">
+      <button class="btn btn-success" (click)="onPressAddCustomer()">Add Customer</button>
+    </span>
+    <span *ngIf="Save" class="btn-add-customer">
+      <button class="btn btn-success" (click)="onPressChangeCustomer()">Change Customer</button>
+    </span>
+
+    <div class="row">
+      <div class="col-sm-2">
+        <div class="input-group">
+          <label>Device</label>
+        </div>
+      </div>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <input type="text" class="form-control" [value]="device.deviceName" readonly=true>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2">
+        <div class="input-group">
+          <label>Play</label>
+        </div>
+      </div>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <input type="text" class="form-control" *ngIf="Multi == 0" value="Multi" readonly=true>
+          <input type="text" class="form-control" *ngIf="Multi == 1" value="Single" readonly=true>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2">
+        <div class="input-group">
+          <label>Game</label>
+        </div>
+      </div>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <input type="text" class="form-control" readonly="true" [value]="game.gameName">
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-sm-2">
+        <div class="input-group">
+          <label>Drinks</label>
+        </div>
+      </div>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <select class="form-control" #selectedDrink>
+            <option disabled>drink Name</option>
+            <option *ngFor="let d of drinks" [value]="d.drinkNameID">{{d.drinkName}} </option>
+          </select>
+          <button class="btn btn-info" (click)="onSave(selectedDrink.value)">Save</button>
+        </div>
+      </div>
+      <div class="Current-Drinks" *ngFor="let a of arrayOfCurrentDrinks">
+        <div class="drink">{{a.drinkName}}
+          <i class="fa fa-close" (click)="deleteDrink(a.drinkID)"></i>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="input-group">
+              <label>Start Time</label>
+
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="input-group">
+              <input type="time" class="form-control" [(ngModel)]="startDate" readonly="true">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="input-group">
+              <label>Now Time</label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="input-group">
+              <input type="time" class="form-control" [(ngModel)]="EndDate">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="input-group">
+              <label>Amount</label>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-group">
+              <input type="number" placeholder="0" class="form-control" [(ngModel)]="amount" readonly="true">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="input-group">
+              <label>Payed</label>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-group">
+              <input type="number" placeholder="0" class="form-control" (keyup)="OnChangePay($event)">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="input-group">
+              <label>Remening</label>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-group">
+              <input type="number" placeholder="0" class="form-control" readonly="true" [(ngModel)]="RemeningAmount">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <label>Previous Remening</label>
+      </div>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <input type="number" placeholder="0" class="form-control" readonly="true" [(ngModel)]="PreviousRemening">
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="success">
+        <div class="alert alert-success ">
+          <strong>Success!</strong> Finsh Payment
+        </div>
+      </div>
+      <div *ngIf="error">
+        <div class="alert alert-danger ">
+          <strong>Failure!</strong>Please Enter the Payed field
+        </div>
+      </div>
+
+    <div class="btn-finsh">
+      <button class="btn btn-danger" (click)="OnPressFinshTime()">Finsh Time</button>
+    </div>
+
+  </div>
+</div>
+
+
+
+<div class="container" *ngIf="!notFinished">
+  <div class="card myDivToPrint">
+    <h4>We are honored to serve you</h4>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="input-group">
+          <h6>Customer Name</h6>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="input-group">
+          <input type="text" class="form-control Input-payment" placeholder="customer Name" [(ngModel)]="customerName" readonly="true">
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="input-group">
+          <h6>Playing</h6>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="input-group">
+          <input type="text" class="form-control Input-payment" readonly="true" [value]="game.gameName">
+        </div>
+      </div>
+    </div>
+
+    <div class="input-group input-payment">
+      <h6>Drinks</h6>
+    </div>
+    <div class="Current-Drinks" *ngFor="let a of arrayOfCurrentDrinks">
+      <div class="drink drink-payment"> {{a.drinkName}}
+        <span> Price: {{a.drinkPrice}} $</span>
+      </div>
+
+    </div>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="input-group">
+                <label>Amount</label>
+              </div>
+            </div>
+            <div class="col-sm-6 col-6-payment">
+              <div class="input-group">
+                <input type="number" placeholder="0" class="form-control" [(ngModel)]="amount" readonly="true">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="input-group">
+                <label>Payed</label>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="input-group">
+                  <input type="number" placeholder="0" class="form-control" [(ngModel)]="Payed" readonly="true">
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="input-group">
+                <label>Remening</label>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="input-group">
+                  <input type="number" placeholder="0" class="form-control" [(ngModel)]="RemeningAmount" readonly="true">
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-print">
+    <button class="btn-dark" (click)="onPressPrint()">Print</button>
+  </div>
+</div>

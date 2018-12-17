@@ -1,0 +1,96 @@
+<!-- to make add device -->
+
+<div class="container" *ngIf="adminRole == 'admin' ">
+  <h4>Reports </h4>
+  <div class="row">
+
+    <div class="col-sm-6">
+      <label> From</label>
+      <input type="date" name="bday" class="form-control" [(ngModel)]="From">
+    </div>
+    <div class="col-sm-6">
+      <label> To</label>
+      <input type="date" name="bday" class="form-control" [(ngModel)]="to">
+    </div>
+
+  </div>
+  <div class="btn-search">
+      <button class="btn-block" (click)="onPressSearch()">Search</button>
+    </div>
+
+    <div class="container" *ngIf="paymentCards">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="div-Remening-Amount" style="color:#446464" >
+                        Amount
+                     </div>
+                     <div class="div-Remening-Amount" style="color:#446464" >
+                       <h4> {{amount}}</h4>
+                     </div>
+                  </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                   <div class="div-Remening-Amount" style="color: red">
+                      RemeningAmount
+                   </div>
+                   <div class="div-Remening-Amount" style="color: red">
+                     <h4> {{RemeningAmount}}</h4>
+                   </div>
+                  </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="div-Remening-Amount" style="color: rebeccapurple">
+                        Payed
+                     </div>
+                     <div class="div-Remening-Amount" style="color: rebeccapurple">
+                        <h4>{{Payed}}</h4>
+                     </div>
+                  </div>
+            </div>
+          </div>
+    </div>
+
+  <table class="table table-hover" *ngIf="visiable">
+    <thead>
+      <tr>
+        <th>Numbers</th>
+        <th>Customer</th>
+        <th>Game Name</th>
+        <th>Amount</th>
+        <th>Payed</th>
+        <th>Renaming</th>
+        <th>Date</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Admin</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of data ; let i = index">
+
+        <td class="td-names">{{i+1}}</td>
+        <td class="td-names">{{d.customerName}}</td>
+        <td class="td-names">{{d.gameName}}</td>
+        <td class="td-names">{{d.amount}}</td>
+        <td class="td-names">{{d.payed}}</td>
+        <td class="td-names">{{d.RemeningAmount}}</td>
+        <td class="td-names">{{d.startTime | date :'shortDate' }}</td>
+        <td class="td-names">{{d.startTime| date :'shortTime'}}</td>
+        <td class="td-names">{{d.endTime | date :'shortTime'}}</td>
+        <td class="td-names">{{d.userName}}</td>
+
+      </tr>
+    </tbody>
+  </table>
+
+  <ul class="pagination pagination-lg" >
+      <li *ngFor="let page of Allpages" ><button class="btn btn-dark" (click)="onPressPage(page)"> {{page}}</button></li>
+
+    </ul>
+</div>
+
+
+

@@ -1,0 +1,30 @@
+<div class="div-login">
+  <div class="container">
+    <div class="card">
+      <div *ngIf="success">
+        <div class="alert alert-success ">
+          <strong>Success!</strong> Login
+        </div>
+      </div>
+      <div *ngIf="error">
+        <div class="alert alert-danger ">
+          <strong>Failure!</strong> Login
+        </div>
+      </div>
+      <div class="card-body">
+        <h4>Welcome to Wembley PS</h4>
+        <div class="input-group">
+          <label> User Name</label>
+          <input type="text" class="form-control" placeholder="User Name" [(ngModel)]="UserName">
+        </div>
+        <div class="input-group">
+          <label>Pass Word</label>
+          <input type="password" class="form-control" placeholder="Password" [(ngModel)]="Password">
+        </div>
+        <div class="btn-login">
+          <button class="btn btn-outline-dark" (click)="OnPressLogin()">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

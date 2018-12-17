@@ -1,0 +1,56 @@
+<div class="container">
+  <h4>Welcome To Wembley PS</h4>
+
+
+      <div class="container">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Device Name</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let d of data ; let i = index">
+
+              <td class="td-names">{{d.deviceName}}</td>
+              <td *ngIf="d.status == 0" class="td-names">
+                <button class="btn btn-outline-danger" style=" cursor: default" >NonActive</button>
+              </td>
+
+              <td *ngIf="d.status == 1" class="td-names">
+                <button class="btn btn-outline-success" style=" cursor: default">Active</button>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h4>Top Customer</h4>
+        <div>
+          1st {{topCustomer}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h4>Device Percentage</h4>
+        <div>
+           {{DevicePernt}} %
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>

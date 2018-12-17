@@ -1,0 +1,42 @@
+<div class="container" *ngIf="adminRole == 'admin'">
+  <div class="hour-price-page">
+    <div class="card">
+      <h4>Edit Your Hour Price</h4>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-2">
+            <div class="input-group">
+              <label>Single Hour Play</label>
+            </div>
+            <div class="input-group">
+              <label>Multi Hour Play</label>
+            </div>
+          </div>
+          <div class="col-sm-10">
+            <div class="input-group">
+              <input type="number" placeholder="Single Price Hour" class="form-control" [(ngModel)]="singlePlay">
+            </div>
+            <div class="input-group">
+              <input type="number" placeholder="Multi Price Hour" class="form-control" [(ngModel)]="MultiPlay">
+            </div>
+          </div>
+
+        </div>
+        <div class="btn-submit">
+          <button class="btn btn-secondary" (click)="OnPressSubmit()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="success">
+    <div class="alert alert-success ">
+      <strong>Success!</strong> Updated
+    </div>
+  </div>
+  <div *ngIf="error">
+    <div class="alert alert-danger ">
+      <strong>Failure!</strong> Login
+    </div>
+  </div>
+
+</div>

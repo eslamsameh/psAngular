@@ -1,0 +1,75 @@
+<div class="container">
+  <h4> Customer Payments</h4>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <div style="color:#446464">
+            <h6>Amount</h6>
+          </div>
+          <div style="color:#446464">
+            {{Amount}}
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <div style="color:rebeccapurple">
+            <h6>Payed</h6>
+          </div>
+          <div style="color:rebeccapurple">
+            {{Payed}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+
+      <div class="card">
+        <div class="card-body">
+          <div style="color:red">
+            <h6>Remening Amount</h6>
+          </div>
+          <div style="color:red">
+            {{RemeningAmount}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Customer Name</th>
+        <th>Device Name</th>
+        <th>Game Name</th>
+        <th>Date </th>
+        <th>From </th>
+        <th>To </th>
+        <th>Amount</th>
+        <th>Payed </th>
+        <th>Remening Amount</th>
+        <th>Admin</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of data ; let i = index">
+        <td class="td-names">{{d.customerName}}</td>
+        <td class="td-names">{{d.deviceName}}</td>
+        <td class="td-names">{{d.gameName}}</td>
+        <td class="td-names">{{d.date | date :'shortDate'}}</td>
+        <td class="td-names">{{d.startTime | date :'shortTime'}}</td>
+        <td class="td-names">{{d.endTime | date :'shortTime'}}</td>
+        <td class="td-names">{{d.amount}}</td>
+        <td class="td-names">{{d.payed}}</td>
+        <td class="td-names">{{d.RemeningAmount}}</td>
+        <td class="td-names">{{d.userName}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

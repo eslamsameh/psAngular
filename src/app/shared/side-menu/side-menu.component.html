@@ -1,0 +1,211 @@
+<div (window:resize)="onResize($event)" style="height: 100%">
+  <div class="sidebar" *ngIf="toggleNotLess">
+    <div class="links">
+      <div class="menu-toggle">
+        <i class="fa fa-align-justify " (click)="OnPresstoggleLess()"></i>
+      </div>
+      <div class="side-Header">
+        <h6> Wembley Ps</h6>
+
+      </div>
+      <div class="side-Header-item">
+        <i class="fa fa-home"></i>
+        <a routerLink="/page/home" routerLinkActive="active-like-home">Home</a>
+      </div>
+      <div class="side-Header-item" data-toggle="collapse" data-target="#admin">
+        <i class="fa fa-user"></i>
+        <h6>Admin</h6>
+
+      </div>
+      <div id="admin" class="collapse">
+        <div class="page-link " *ngIf="adminRole=='admin'">
+          <i class="fa fa-user-plus"></i>
+          <a routerLink="/page/admin/add-admin" routerLinkActive="active">Add New Admin</a>
+        </div>
+        <div class="page-link" *ngIf="adminRole=='admin'">
+          <i class="fa fa-users"></i>
+          <a routerLink="/page/admin/get-all-admins" routerLinkActive="active">All Admin</a>
+        </div>
+        <div class="page-link">
+          <i class="fa fa-address-card"></i>
+          <a routerLink="/page/admin/my-profile" routerLinkActive="active">My Profile</a>
+        </div>
+      </div>
+      <div class="side-Header-item">
+        <i class="fa fa-television"></i>
+        <a routerLink="/page/device/get-all-devices" routerLinkActive="active-like-home">
+          <h6>device</h6>
+        </a>
+
+      </div>
+
+      <div class="side-Header-item" data-toggle="collapse" data-target="#payment">
+        <i class="fa fa-euro"></i>
+        <h6>Payment</h6>
+      </div>
+      <div id="payment" class="collapse">
+        <div class="page-link ">
+          <i class="fa fa-euro"></i>
+          <a routerLink="/page/payment/add-payment" routerLinkActive="active" >Open Time</a>
+        </div>
+        <div class="page-link ">
+          <i class="fa fa-clock-o"></i>
+          <a routerLink="/page/payment/current-payments" routerLinkActive="active" >Current Payement</a>
+        </div>
+        <div class="page-link">
+          <i class="fa fa-bar-chart" *ngIf="adminRole=='admin'"></i>
+          <a routerLink="/page/payment/payment-reports" routerLinkActive="active" >Reports For Payement</a>
+        </div>
+      </div>
+      <!-- <div class="side-Header-item" data-toggle="collapse" data-target="#reservation">
+        <i class="fa fa-ticket"></i>
+        <h6>Reservation</h6>
+      </div> -->
+      <!-- <div id="reservation" class="collapse">
+        <div class="page-link ">
+          <i class="fa fa-ticket"></i>
+          <a routerLink="/page/reservation/add-reservation" routerLinkActive="active" >Add To Waiting List</a>
+        </div>
+        <div class="page-link">
+          <i class="fa fa-ticket"></i>
+          <a routerLink="/page/reservation/get-all-reservations" routerLinkActive="active" >All Waiting List</a>
+        </div>
+      </div> -->
+      <div class="side-Header-item">
+        <i class="fa fa-gamepad"></i>
+        <a routerLink="/page/game" routerLinkActive="active-like-home">
+          <h6>Games</h6>
+        </a>
+      </div>
+
+      <div class="side-Header-item" *ngIf="adminRole=='admin'">
+        <i class="fa fa-beer"></i>
+        <a routerLink="/page/drink" routerLinkActive="active-like-home" >
+          <h6>Drink</h6>
+        </a>
+      </div>
+      <div class="side-Header-item">
+        <i class="fa fa-user-circle-o"></i>
+        <a routerLink="/page/customer" routerLinkActive="active-like-home">
+          <h6>Customer</h6>
+        </a>
+      </div>
+
+      <div class="side-Header-item" *ngIf="adminRole=='admin'">
+        <i class="fa fa-clock-o"></i>
+        <a routerLink="/page/hour-price" routerLinkActive="active-like-home">
+          Edit Your Hour Price</a>
+      </div>
+      <div class="side-Header-item">
+        <i class="fa fa-file-text-o"></i>
+        <a routerLink="/page/print-text" routerLinkActive="active-like-home">Print Text</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar" *ngIf="!toggleNotLess">
+    <div class="links">
+      <div class="menu-toggle-less">
+        <i class="fa fa-align-justify " (click)="OnPresstoggleNotLESS()"></i>
+      </div>
+      <div class="side-Header-item-icon">
+        <a routerLink="/page/home" routerLinkActive="active-like-home">
+          <i class="fa fa-home"></i>
+        </a>
+      </div>
+      <div class="side-Header-item-icon" data-toggle="collapse" data-target="#admin">
+        <i class="fa fa-user"></i>
+      </div>
+      <div id="admin" class="collapse">
+        <div class="page-link " *ngIf="adminRole=='admin'">
+          <a routerLink="/page/admin/add-admin" routerLinkActive="active">
+            <i class="fa fa-user-plus"></i>
+          </a>
+        </div>
+        <div class="page-link" *ngIf="adminRole=='admin'">
+          <a routerLink="/page/admin/get-all-admins" routerLinkActive="active">
+            <i class="fa fa-users"></i>
+          </a>
+
+        </div>
+        <div class="page-link">
+          <a routerLink="/page/admin/my-profile" routerLinkActive="active">
+            <i class="fa fa-address-card"></i>
+          </a>
+        </div>
+      </div>
+      <div class="side-Header-item-icon" *ngIf="adminRole=='admin'">
+        <a routerLink="/page/device/get-all-devices" routerLinkActive="active-like-home">
+          <i class="fa fa-television"></i>
+        </a>
+
+      </div>
+      <div class="side-Header-item-icon" data-toggle="collapse" data-target="#payment">
+        <i class="fa fa-euro"></i>
+      </div>
+      <div id="payment" class="collapse">
+        <div class="page-link ">
+          <a routerLink="/page/payment/add-payment" routerLinkActive="active" >
+            <i class="fa fa-euro"></i>
+          </a>
+
+
+        </div>
+        <div class="page-link">
+            <a routerLink="/page/payment/current-payments" routerLinkActive="active" >
+              <i class="fa fa-clock-o"></i>
+            </a>
+        </div>
+        <div class="page-link" *ngIf="adminRole=='admin'">
+            <a routerLink="/page/payment/payment-reports" routerLinkActive="active"  >
+              <i class="fa fa-bar-chart"></i>
+            </a>
+
+        </div>
+      </div>
+      <!-- <div class="side-Header-item-icon" data-toggle="collapse" data-target="#reservation">
+        <i class="fa fa-ticket"></i>
+      </div> -->
+      <!-- <div id="reservation" class="collapse">
+        <div class="page-link ">
+          <i class="fa fa-ticket"></i>
+
+        </div>
+        <div class="page-link">
+          <i class="fa fa-ticket"></i>
+          <i class="fa fa-ticket"></i>
+          <i class="fa fa-ticket"></i>
+        </div>
+      </div> -->
+      <div class="side-Header-item-icon" *ngIf="adminRole=='admin'">
+        <a routerLink="/page/game" routerLinkActive="active-like-home">
+          <i class="fa fa-gamepad"></i>
+        </a>
+      </div>
+
+      <div class="side-Header-item-icon" *ngIf="adminRole=='admin'">
+        <a routerLink="/page/drink" routerLinkActive="active-like-home">
+          <i class="fa fa-beer "></i>
+        </a>
+
+      </div>
+      <div class="side-Header-item-icon">
+        <a routerLink="/page/customer" routerLinkActive="active-like-home">
+          <i class="fa fa-address-card"></i>
+        </a>
+      </div>
+
+      <div class="side-Header-item-icon" *ngIf="adminRole=='admin'">
+        <a routerLink="/page/hour-price" routerLinkActive="active-like-home">
+          <i class="fa fa-clock-o"></i>
+        </a>
+      </div>
+      <div class="side-Header-item-icon">
+        <a routerLink="/page/print-text" routerLinkActive="active-like-home">
+          <i class="fa fa-file-text-o"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
